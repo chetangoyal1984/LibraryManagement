@@ -109,7 +109,30 @@ void addUser(char userName[]) {
 void lendBooks(char bookName[], char userName[]);
 void returnBook(char bookName[]);
 void createLimit(char userName[], int totalBooks);
+void searchBook(char bookName[]);
+void searchUser(char userName[]);
 };
+
+void BookStore::searchUser(char userName[]) {
+    set<user*>::iterator it1;
+    for (it1=users->begin(); it1!=users->end(); ++it1) {
+         if(strcmp((*it1)->getName(),userName) == 0) {
+             cout<<"user has been found"<<endl;
+             return;
+         }
+    }
+    cout<<"No User has been found with name:" <<userName;
+}
+void BookStore::searchBook(char bookName[]) {
+    set<book*>::iterator it;
+    for (it=books->begin(); it!=books->end(); ++it) {
+        if(strcmp((*it)->getName(),bookName) == 0) {
+            cout<<"book has been found in the library"<<endl;
+            return;
+        }
+    }
+    cout<<"No book has been found with name:" <<bookName;
+}
 
 void BookStore::createLimit(char userName[], int totalBooks) {
     set<user*>::iterator it1;
@@ -194,12 +217,10 @@ int main() {
         cout<< "3. lend books to users."<<endl;
         cout<< "4. Ability to return books to the library."<<endl;
         cout<< "5. limit the number of books borrowed by user" <<endl;
+        cout<< "6. search book with title" <<endl;
+        cout<< "7. search user with name" <<endl;
         cout<< "9. End"<<endl;
     while(1) {
-        
-    //  5. Ability to limit the number of books borrowed by user.
-    //  6. Ability to search a book by title, author.
-    //  7. Ability to search a user by name
         
         cin>>choice;
         switch(choice) {
@@ -230,6 +251,16 @@ int main() {
                 cin>>userName;
                 cin>>totalBooks;
                 bookstore.createLimit(userName, totalBooks);
+                break;
+            case '6' :
+            //search book with given name
+                cin>>bookName;
+                bookstore.searchBook(bookName);
+                break;
+            case '7' :
+            //search user with given name
+                cin >> userName;
+                bookstore.searchUser(userName);
                 break;
             case '9' :
                 break;
