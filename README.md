@@ -1,4 +1,5 @@
 # LibraryManagement
+#Here I have tried to take different options as input
 #1. add books to the lib
 #2. add users to the lib
 #3. lend books to users
@@ -7,7 +8,6 @@
 #6. search book with title
 #7. search user with name
 #9. End
-
 
 1
 kiteRunner
